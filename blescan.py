@@ -165,20 +165,6 @@ def parse_events(sock, loop_count=100):
 						trame = returnstringpacket(pkt[report_pkt_offset +18: report_pkt_offset + 37])
 						print "\tTRAME:", trame
 						
-						conn = MySQLdb.connect(host= "localhost",
-										  user="script",
-										  passwd="passerelle",
-										  db="passerelle")
-						x = conn.cursor()
-
-						try:
-						   x.execute("""INSERT INTO temp (trame_temp, date_temp, type_temp) VALUES (%s, NOW(), 1)""",(trame))
-						   conn.commit()
-						except:
-						   conn.rollback()
-
-						conn.close()
-						
 						print "....."
 						
 						temp = 0
